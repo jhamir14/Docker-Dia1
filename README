@@ -1,0 +1,19 @@
+# Laboratorio de Microservicios (Django + React)
+
+## 🧱 Arquitectura inicial
+
+- auth-service/ → Autenticación y tokens JWT  
+- blog-service/ → Publicaciones, autores y categorías  
+- email-service/ → Envío de notificaciones  
+- frontend/ → Interfaz React  
+- reverse-proxy/ → Balanceo de carga / Gateway  
+
+### 🧩 Servicios base
+
+- PostgreSQL (5432)
+- Redis (6379)
+
+### ⚙️ Cómo iniciar
+
+```bash
+docker compose up -d
