@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: Loans API
+  version: "1.0"
+paths:
+  /api/loans:
+    post:
+      summary: Create loan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id: { type: string }
+                book_id: { type: string }
+                start_date: { type: string, format: date }
+                days: { type: integer }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  loan_id: { type: string }
+                  due_date: { type: string }
+                  status: { type: string }

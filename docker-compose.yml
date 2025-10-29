@@ -17,6 +17,24 @@ services:
     ports:
       - "6379:6379"
 
+  blog:
+    build: ../blog-service
+    container_name: blog_service
+    restart: always
+    environment:
+      - DB_HOST=postgres
+      - DB_NAME=main_db
+      - DB_USER=devuser
+      - DB_PASS=devpass
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DEBUG=1
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8001:8001"
+
   auth:
     build: ./auth-service
     container_name: auth_service
@@ -34,3 +52,28 @@ services:
       - redis
     ports:
       - "8000:8000"
+
+  loans:
+    build: ./loans_service
+    container_name: loans_service
+    restart: always
+    environment:
+      - DEBUG=1
+    ports:
+      - "8002:8001"
+    depends_on:
+      - loans_db
+
+  loans_db:
+    image: postgres:15
+    container_name: db_loans
+    restart: always
+    environment:
+      - POSTGRES_USER=loan
+      - POSTGRES_PASSWORD=loanpass
+      - POSTGRES_DB=loans_db
+    volumes:
+      - loans_pg:/var/lib/postgresql/data
+
+volumes:
+  loans_pg:

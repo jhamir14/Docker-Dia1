@@ -1,0 +1,1 @@
+# No usado en FastAPI. Archivo de marcador de posición.

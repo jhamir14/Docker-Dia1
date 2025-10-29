@@ -1,0 +1,6 @@
+from typing import Dict
+
+
+class UsersPort:
+    async def get_user(self, user_id: str) -> Dict: ...
+    async def get_user_active_loans_count(self, user_id: str) -> int: ...
